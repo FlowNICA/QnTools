@@ -56,7 +56,7 @@ const char *SubEventChannels::szQAMultiplicityHistoName = "Multiplicity";
 SubEventChannels::SubEventChannels(unsigned int bin_id,
                                    const CorrectionAxisSet *eventClassesVariables,
                                    Int_t nNoOfChannels, std::bitset<QVector::kmaxharmonics> harmonics) : SubEvent(bin_id, eventClassesVariables, harmonics),
-                                                                                                         fRawQnVector(harmonics, QVector::CorrectionStep::RAW),
+                                                                                                         fRawQnVector(harmonics, QVector::CorrectionStep::INITIAL),
                                                                                                          fInputDataCorrections() {
   fNoOfChannels = nNoOfChannels;
 }
@@ -362,7 +362,7 @@ void SubEventChannels::FillQAHistograms() {
 /// be attached and the constructed list does not contain the final Qn vectors.
 /// \param list list where the corrected Qn vector should be added
 inline void SubEventChannels::IncludeQnVectors() {
-  qvectors_.emplace(QVector::CorrectionStep::RAW, &fRawQnVector);
+  qvectors_.emplace(QVector::CorrectionStep::INITIAL, &fRawQnVector);
   qvectors_.emplace(QVector::CorrectionStep::PLAIN, &fPlainQnVector);
   for (auto &correction : fQnVectorCorrections) {
     correction->IncludeCorrectedQnVector(qvectors_);

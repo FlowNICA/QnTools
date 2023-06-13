@@ -84,7 +84,7 @@ class QVector {
    * @enum available correction steps in the order of application
    */
   enum CorrectionStep {
-    RAW,
+    INITIAL,
     PLAIN,
     RECENTERED,
     TWIST,
@@ -449,7 +449,7 @@ class QVector {
 
  private:
   Normalization norm_ = Normalization::NONE;            ///< normalization method
-  CorrectionStep correction_step_ = CorrectionStep::RAW;///< correction step defined by enumerator
+  CorrectionStep correction_step_ = CorrectionStep::INITIAL;///< correction step defined by enumerator
   int n_ = 0;                                           ///< number of data vectors contributing to the q vector
   float sum_weights_ = 0.0;                             ///< sum of weights
   std::bitset<kmaxharmonics> bits_{};                   ///< Bitset for keeping track of the harmonics
@@ -472,7 +472,7 @@ inline double ScalarProduct(QVector a, QVector b, unsigned int harmonic) {
 }
 
 static constexpr std::array<const char *, 6> kCorrectionStepNamesArray = {
-    "RAW",
+    "INITIAL",
     "PLAIN",
     "RECENTERED",
     "TWIST",
