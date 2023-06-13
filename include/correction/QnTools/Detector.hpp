@@ -199,6 +199,9 @@ class Detector {
   /// \endcond
 };
 
+template<>
+Long64_t DataContainer<std::unique_ptr<Qn::SubEvent>>::Merge(TCollection *inputlist) = delete;
+
 }
 
 #endif //FLOW_DETECTOR_H
