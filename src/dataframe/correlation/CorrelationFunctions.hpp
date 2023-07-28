@@ -148,6 +148,13 @@ inline auto xxy(unsigned int h_a, unsigned int h_b, unsigned int h_c) {
     return u.x(h_a) * Qb.x(h_b) * Qc.y(h_c);
   };
 }
+inline auto ScalarProduct(unsigned int h_a, unsigned int h_b, unsigned int h_c) {
+  return [h_a, h_b, h_c](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) - u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) + 
+      u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) + u.y(h_a) * Qb.x(h_b) * Qc.y(h_c);
+  };
+}
 }  // namespace Qn::Correlation::MixedHarmonics
 
 /**
