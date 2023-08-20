@@ -50,8 +50,8 @@ inline auto ScalarProduct(unsigned int h_u, unsigned int h_Q) {
 inline auto c2(unsigned int h_u) {
   return [h_u](const Qn::QVector &u) {
     double ret = 0.;
-      auto Q = u.DeNormal();
-      auto m = Q.sumweights();
+    auto Q = u.DeNormal();
+    auto m = Q.sumweights();
     if (m < 2.) {
       ret = 0.;
     } else {
@@ -69,8 +69,8 @@ inline auto c2(unsigned int h_u) {
 inline auto wc2(unsigned int h_u) {
   return [h_u](const Qn::QVector &q11, const Qn::QVector &q12) {
     double ret = 0.;
-    auto Q11.DeNormal();
-    auto Q12.DeNormal();
+    auto Q11 = q11.DeNormal();
+    auto Q12 = q12.DeNormal();
     auto S12 = Q12.sumweights();
     auto S11 = Q11.sumweights();
     auto S21 = S11 * S11;
@@ -115,7 +115,7 @@ inline auto d2(unsigned int h_u) {
 //   p = sum 1. * un - POI
 //   r = sum w^1 * un - RFP
 //   q = sum w^1 * un  - both RFP and POI
-inline auto wd2(unisgned int h_u) {
+inline auto wd2(unsigned int h_u) {
   return [h_u](const Qn::QVector &p, const Qn::QVector &r, const Qn::QVector &q) {
     double ret = 0.;
     auto mp = p.sumweights();
@@ -288,24 +288,24 @@ inline auto wd4(unsigned int h_u) {
     const auto Q12 = q12.DeNormal();
     const auto Q13 = q13.DeNormal();
     const auto S11 = std::complex<double>{R11.sumweights(), 0.};
-    const auto S12 = std::complex<double>{R12.sumweights(), 0.};
+    const auto S12 = std::complex<double>{R22.sumweights(), 0.};
     const auto S13 = std::complex<double>{R13.sumweights(), 0.};
     const auto S14 = std::complex<double>{R14.sumweights(), 0.};
     const auto S21 = S11 * S11;
     const auto S31 = S11 * S21;
     const auto mp  = std::complex<double>{P10.sumweights(), 0.};
-    const auto s11 = std::complex<double>{Q11.sumweights(), 0.};
+    const auto s11 = std::complex<double>{Q21.sumweights(), 0.};
     const auto s12 = std::complex<double>{Q12.sumweights(), 0.};
     const auto s13 = std::complex<double>{Q13.sumweights(), 0.};
     const auto denom = mp*(S31 - 3.*S11*S12 + 2.*S13) - 3.*(s11*(S21-S12)+2.*(s13-s12*S11));
     if (denom.real() == 0) return 0.;
 
     const auto fp10 = std::complex<double>{P10.x(h_u), P10.y(h_u)};
-    const auto fq21 = std::complex<double>{Q21.x(h_u), Q21.y(h_u)};
+    const auto fq21 = std::complex<double>{Q21.x(2*h_u), Q21.y(2*h_u)};
     const auto fq12 = std::complex<double>{Q12.x(h_u), Q12.y(h_u)};
     const auto fq13 = std::complex<double>{Q13.x(h_u), Q13.y(h_u)};
     const auto fr11 = std::complex<double>{R11.x(h_u), R11.y(h_u)};
-    const auto fr22 = std::complex<double>{R22.x(h_u), R22.y(h_u)};
+    const auto fr22 = std::complex<double>{R22.x(2*h_u), R22.y(2*h_u)};
     const auto fr13 = std::complex<double>{R13.x(h_u), R13.y(h_u)};
     const auto fr14 = std::complex<double>{R14.x(h_u), R14.y(h_u)};
 

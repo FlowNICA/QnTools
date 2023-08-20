@@ -88,5 +88,5 @@ TEST(CorrelationAction, BasicIntegratedQ) {
   r.Add(0.6,1.);
 
   auto func = Qn::Correlation::TwoParticle::d2(2);
-  auto result = func(p,r);
+  auto result = func(p,r,p);
 }
