@@ -66,7 +66,10 @@ class StatCalculate : public Stat {
 
   void SetSampleWeights( std::vector<double> weights ){ sample_weights_ = std::move(weights); }
 
-  void SetMean( double mean ){ mean_ = mean; }
+  void SetMean( double val ){ mean_ = val; }
+  void SetVariance( double val ){ variance_ = val; }
+  void SetSumWeights( double val ){ sum_weight_ = val; }
+  void SetSumWeights2( double val ){ sum_weight2_ = val; }
 
   [[nodiscard]] double VarianceFromPropagation() const { return variance_; }
 
