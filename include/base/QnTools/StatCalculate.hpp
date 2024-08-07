@@ -58,7 +58,16 @@ class StatCalculate : public Stat {
 
   virtual ~StatCalculate();
 
-  /// Returns the sample Variance from error propagation
+  [[nodiscard]] const std::vector<double>& GetSampleMeans() const { return sample_means_; }
+
+  void SetSampleMeans( std::vector<double> means ){ sample_means_ = std::move(means); }
+  
+  [[nodiscard]] const std::vector<double>& GetSampleWeights() const { return sample_weights_; }
+
+  void SetSampleWeights( std::vector<double> weights ){ sample_weights_ = std::move(weights); }
+
+  void SetMean( double mean ){ mean_ = mean; }
+
   [[nodiscard]] double VarianceFromPropagation() const { return variance_; }
 
   /// Returns variance of the sample mean from error propagation
@@ -118,7 +127,7 @@ class StatCalculate : public Stat {
 
   /// Returns the sum of weights squared.
   [[nodiscard]] double SumWeights2() const { return sum_weight2_; }
-
+  
   /// Retunrs the effective number of events.
   /// See For more information:
   /// https://en.wikipedia.org/w/index.php?title=Effective_sample_size&oldid=976981114#Weighted_samples
