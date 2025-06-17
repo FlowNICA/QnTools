@@ -220,6 +220,140 @@ inline auto ScalarProduct(unsigned int h_a, unsigned int h_b, unsigned int h_c) 
  */
 namespace Qn::Correlation::FourParticle {
 
+inline auto xxxx(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.x(h_d);
+  };
+}
+
+inline auto yxxx(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.x(h_d);
+  };
+}
+
+inline auto xyxx(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.x(h_d);
+  };
+}
+
+inline auto yyxx(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.x(h_d);
+  };
+}
+
+inline auto xxyx(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.x(h_d);
+  };
+}
+
+inline auto yxyx(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.x(h_d);
+  };
+}
+
+inline auto xyyx(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.x(h_d);
+  };
+}
+
+inline auto yyyx(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.x(h_d);
+  };
+}
+
+inline auto xxxy(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.y(h_d);
+  };
+}
+
+inline auto yxxy(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.y(h_d);
+  };
+}
+
+inline auto xyxy(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.y(h_d);
+  };
+}
+
+inline auto yyxy(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.y(h_d);
+  };
+}
+
+inline auto xxyy(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.y(h_d);
+  };
+}
+
+inline auto yxyy(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.y(h_d);
+  };
+}
+
+inline auto xyyy(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.y(h_d);
+  };
+}
+
+inline auto yyyy(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.y(h_d);
+  };
+}
+
+// // < u Q Q* Q* > scalar product - w/o mixed harmonics
+// inline auto ScalarProductNoMixed(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+//   return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+//                          const Qn::QVector &Qc, const Qn::QVector &Qd) {
+//     return u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.x(h_d) - u.x(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.y(h_d) + 
+//       u.x(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.y(h_d) + u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.x(h_d) +
+//       u.y(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.y(h_d) + u.y(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.x(h_d) -
+//       u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.x(h_d) + u.y(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.y(h_d);
+//   };
+// }
+
+// < u Q* Q* Q* > scalar product - w/ mixed harmonics
+inline auto ScalarProduct(unsigned int h_a, unsigned int h_b, unsigned int h_c, unsigned int h_d) {
+  return [h_a, h_b, h_c, h_d](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.x(h_d) - u.x(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.y(h_d) - 
+      u.x(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.y(h_d) - u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.x(h_d) +
+      u.y(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.y(h_d) + u.y(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.x(h_d) +
+      u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.x(h_d) - u.y(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.y(h_d);
+  };
+}
+  
 inline auto n4() {
   return [](const Qn::QVector &q) {
     auto m = q.sumweights();
@@ -388,4 +522,315 @@ inline auto wc4(unsigned int h_u) {
 }
 
 }  // namespace Qn::Correlation::FourParticle
+
+/**
+ * Five particle correlation functions
+ */
+namespace Qn::Correlation::FiveParticle {
+
+inline auto xxxxx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto yxxxx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto xyxxx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto yyxxx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto xxyxx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto yxyxx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto xyyxx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto yyyxx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto xxxyx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto yxxyx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto xyxyx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto yyxyx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto xxyyx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto yxyyx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto xyyyx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto yyyyx(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.x(h_k);
+  };
+}
+
+inline auto xxxxy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto yxxxy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto xyxxy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto yyxxy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto xxyxy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto yxyxy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto xyyxy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto yyyxy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto xxxyy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto yxxyy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto xyxyy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto yyxyy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto xxyyy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto yxyyy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto xyyyy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.y(h_k);
+  };
+}
+
+inline auto yyyyy(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                    unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.y(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.y(h_k);
+  };
+}
+
+// < u Q* Q* Q* Q* > scalar product - w/ mixed harmonics
+inline auto ScalarProduct(unsigned int h_a, unsigned int h_b, unsigned int h_c,
+                          unsigned int h_d, unsigned int h_k) {
+  return [h_a, h_b, h_c, h_d, h_k](const Qn::QVector &u, const Qn::QVector &Qb,
+                         const Qn::QVector &Qc, const Qn::QVector &Qd,
+                         const Qn::QVector &Qk) {
+    return u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.x(h_k) - u.x(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.y(h_k) - 
+      u.x(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.y(h_k) - u.x(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.x(h_k) -
+      u.x(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.y(h_k) - u.x(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.x(h_k) -
+      u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.x(h_k) + u.x(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.y(h_k) +
+      u.y(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.y(h_k) + u.y(h_a) * Qb.x(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.x(h_k) +
+      u.y(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.x(h_k) - u.y(h_a) * Qb.x(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.y(h_k) +
+      u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.x(h_d) * Qk.x(h_k) - u.y(h_a) * Qb.y(h_b) * Qc.x(h_c) * Qd.y(h_d) * Qk.y(h_k) -
+      u.y(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.x(h_d) * Qk.y(h_k) - u.y(h_a) * Qb.y(h_b) * Qc.y(h_c) * Qd.y(h_d) * Qk.x(h_k);
+  };
+}
+}  // namespace Qn::Correlation::FiveParticle
 #endif  // QNTOOLS_CORRELATIONFUNCTIONS_H_
