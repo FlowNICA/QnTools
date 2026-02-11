@@ -152,7 +152,11 @@ class StatCalculate : public Stat {
   /// For algebra of random variables used here see:
   /// https://en.wikipedia.org/w/index.php?title=Algebra_of_random_variables&oldid=945632545
   friend StatCalculate operator+(const StatCalculate &, const StatCalculate &);
+  friend StatCalculate operator+(double, const StatCalculate &);
+  friend StatCalculate operator+(const StatCalculate &, double);
   friend StatCalculate operator-(const StatCalculate &, const StatCalculate &);
+  friend StatCalculate operator-(double, const StatCalculate &);
+  friend StatCalculate operator-(const StatCalculate &, double);
   friend StatCalculate operator*(const StatCalculate &, const StatCalculate &);
   friend StatCalculate operator/(const StatCalculate &, const StatCalculate &);
   friend StatCalculate operator/(const StatCalculate &, double);
@@ -179,6 +183,12 @@ StatCalculate Merge(const StatCalculate &lhs, const StatCalculate &rhs);
 
 StatCalculate operator+(const StatCalculate &lhs, const StatCalculate &rhs);
 StatCalculate operator-(const StatCalculate &lhs, const StatCalculate &rhs);
+
+StatCalculate operator+(double num, const StatCalculate &con);
+StatCalculate operator+(const StatCalculate &con, double num);
+
+StatCalculate operator-(double num, const StatCalculate &con);
+StatCalculate operator-(const StatCalculate &con, double num);
 
 StatCalculate operator*(const StatCalculate &lhs, const StatCalculate &rhs);
 StatCalculate operator/(const StatCalculate &num, const StatCalculate &den);

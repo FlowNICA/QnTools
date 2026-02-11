@@ -109,6 +109,39 @@ StatCalculate operator+(const StatCalculate &lhs, const StatCalculate &rhs) {
   return sum;
 }
 
+StatCalculate operator+(double num, const StatCalculate &con) {
+  StatCalculate sum{con};
+  // mean and variance
+  sum.mean_ = con.Mean() + num;
+  sum.variance_ = con.Variance() + num;
+  // Bootstrap samples
+  for (size_t i = 0; i < con.sample_means_.size(); ++i) {
+    auto con_mean = con.sample_means_[i];
+    auto con_weight = con.sample_weights_[i];
+    /* if any of arguments is not determined, sum is also not determined */
+    if (con_weight <= 0) {
+      sum.sample_weights_[i] = 0.0;
+      sum.sample_means_[i] = 0.0;
+    } else {
+      sum.sample_weights_[i] = con.sample_weights_[i];
+      sum.sample_means_[i] = con_mean + num;
+    }
+  }
+  return sum;
+}
+
+StatCalculate operator+(const StatCalculate &con, double num) {
+  return operator+( num, con );
+}
+
+StatCalculate operator-(const StatCalculate &con, double num) {
+  return operator+( con, -num );
+}
+
+StatCalculate operator-(double num, const StatCalculate &con) {
+  return operator-( con, -num );
+}
+
 /**
  * Difference of two StatBins
  * @param lhs

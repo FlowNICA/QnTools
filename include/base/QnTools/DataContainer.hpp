@@ -1018,8 +1018,24 @@ DataContainer<T, AxisType> operator+(const DataContainer<T, AxisType> &a, const 
   return a.Apply(b, [](const T &a, const T &b) { return a + b; });
 }
 template<typename T, typename AxisType>
+DataContainer<T, AxisType> operator+(double num, const DataContainer<T, AxisType> &a) {
+  return a.Apply(num, [](double num, const T &a) { return num + a; });
+}
+template<typename T, typename AxisType>
+DataContainer<T, AxisType> operator+(const DataContainer<T, AxisType> &a, double num) {
+  return a.Apply(num, [](double num, const T &a) { return num + a; });
+}
+template<typename T, typename AxisType>
 DataContainer<T, AxisType> operator-(const DataContainer<T, AxisType> &a, const DataContainer<T, AxisType> &b) {
   return a.Apply(b, [](const T &a, const T &b) { return a - b; });
+}
+template<typename T, typename AxisType>
+DataContainer<T, AxisType> operator-(const DataContainer<T, AxisType> &a, double num) {
+  return a.Apply(num, [](double num, const T &a) { return a - num; });
+}
+template<typename T, typename AxisType>
+DataContainer<T, AxisType> operator-(double num, const DataContainer<T, AxisType> &a) {
+  return a.Apply(num, [](double num, const T &a) { return num - a; });
 }
 template<typename T, typename AxisType>
 DataContainer<T, AxisType> operator*(const DataContainer<T, AxisType> &a, const DataContainer<T, AxisType> &b) {
