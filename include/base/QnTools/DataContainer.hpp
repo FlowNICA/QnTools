@@ -1019,19 +1019,11 @@ DataContainer<T, AxisType> operator+(const DataContainer<T, AxisType> &a, const 
 }
 template<typename T, typename AxisType>
 DataContainer<T, AxisType> operator+(double num, const DataContainer<T, AxisType> &a) {
-  auto res = a;
-  for( auto i=0; i<a.size(); ++i ){
-    res.data_[i] = a.data_[i] + num;
-  }
-  return res;
+  return a.Map([num](const T &a) { return a + num; });
 }
 template<typename T, typename AxisType>
 DataContainer<T, AxisType> operator+(const DataContainer<T, AxisType> &a, double num) {
-  auto res = a;
-  for( auto i=0; i<a.size(); ++i ){
-    res.data_[i] = a.data_[i] + num;
-  }
-  return res;
+  return a.Map([num](const T &a) { return a + num; });
 }
 template<typename T, typename AxisType>
 DataContainer<T, AxisType> operator-(const DataContainer<T, AxisType> &a, const DataContainer<T, AxisType> &b) {
@@ -1039,19 +1031,11 @@ DataContainer<T, AxisType> operator-(const DataContainer<T, AxisType> &a, const 
 }
 template<typename T, typename AxisType>
 DataContainer<T, AxisType> operator-(const DataContainer<T, AxisType> &a, double num) {
-  auto res = a;
-  for( auto i=0; i<a.size(); ++i ){
-    res.data_[i] = a.data_[i] - num;
-  }
-  return res;
+  return a.Map([num](const T &a) { return a - num; });
 }
 template<typename T, typename AxisType>
 DataContainer<T, AxisType> operator-(double num, const DataContainer<T, AxisType> &a) {
-  auto res = a;
-  for( auto i=0; i<a.size(); ++i ){
-    res.data_[i] = num - a.data_[i];
-  }
-  return res;
+  return a.Map([num](const T &a) { return num - a; });
 }
 template<typename T, typename AxisType>
 DataContainer<T, AxisType> operator*(const DataContainer<T, AxisType> &a, const DataContainer<T, AxisType> &b) {
