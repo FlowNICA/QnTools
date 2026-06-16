@@ -18,11 +18,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <utility>
 #include <memory>
 #include <utility>
-
-#include "ROOT/RMakeUnique.hxx"
 
 #include "CorrectionAxisSet.hpp"
 #include "SubEventChannels.hpp"
@@ -199,6 +196,8 @@ class Detector {
   /// \endcond
 };
 
+template<>
+Long64_t DataContainer<std::unique_ptr<Qn::SubEvent>>::Merge(TCollection *inputlist) = delete;
 }
 
 #endif //FLOW_DETECTOR_H
