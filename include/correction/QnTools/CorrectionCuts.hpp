@@ -1,4 +1,3 @@
-#include <utility>
 
 // Qn Tools
 //
@@ -23,9 +22,8 @@
 #include <array>
 #include <vector>
 #include <functional>
-
-//#include "ROOT/RMakeUnique.hxx"
-//#include "ROOT/RIntegerSequence.hxx"
+#include <utility>
+#include <memory>
 
 #include "InputVariableManager.hpp"
 #include "QAHistogram.hpp"
@@ -97,7 +95,7 @@ class CorrectionCuts {
     report_ = std::move(cuts.report_);
     return *this;
   };
-  
+
   virtual ~CorrectionCuts() { delete[] var_values_; }
 //  /**
 //   * @brief Adds a cut to the manager.

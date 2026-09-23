@@ -26,6 +26,7 @@
 #include <ROOT/RDF/ActionHelpers.hxx>
 #include <ROOT/RResultPtr.hxx>
 #include <TROOT.h>
+#include <TTreeReader.h>
 
 #include "DataContainer.hpp"
 #include "TemplateFunctions.hpp"
