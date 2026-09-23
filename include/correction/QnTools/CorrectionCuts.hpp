@@ -1,4 +1,3 @@
-
 // Qn Tools
 //
 // Copyright (C) 2020  Lukas Kreis Ilya Selyuzhenkov
