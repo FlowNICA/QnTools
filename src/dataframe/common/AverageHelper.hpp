@@ -17,7 +17,9 @@
 #ifndef QNTOOLS_AVERAGEHELPER_H_
 #define QNTOOLS_AVERAGEHELPER_H_
 
+#include <algorithm>
 #include <exception>
+#include <iostream>
 #include <mutex>
 #include <string>
 #include <tuple>
@@ -58,8 +60,10 @@ class AverageHelper : public RActionImpl<AverageHelper<Action>> {
 
  private:
   mutable std::mutex mutex_;
-  std::vector<bool> is_configured_;  /// flag for tracking if the helper has
+  std::vector<char> is_configured_;  /// flag for tracking if the helper has
                                      /// been configured using the input data.
+                                     /// char instead of bool, so that slots
+                                     /// can be set concurrently.
   std::vector<std::shared_ptr<Action>> results_;  /// vector of results.
   TTreeReader *external_reader_ =
       nullptr;  /// non-owning pointer to external TTreeReader.
@@ -160,13 +164,20 @@ class AverageHelper : public RActionImpl<AverageHelper<Action>> {
 
   /**
    * Main analysis loop. This function is run for every event. Forwards the
-   * inputs to the action.
+   * inputs to the action. If the slot has not been initialized in InitTask,
+   * the action is initialized using the inputs of the current event. Events
+   * which are not suitable for the initialization are skipped until the
+   * initialization succeeds.
    * @tparam Parameters of the action.
    * @param slot slot in the MT pool.
    * @param parameters of the action.
    */
   template <typename... Parameters>
   void Exec(unsigned int slot, Parameters &&... parameters) {
+    if (!is_configured_[slot]) {
+      if (!results_[slot]->InitializeFromEvent(parameters...)) return;
+      is_configured_[slot] = true;
+    }
     results_[slot]->CalculateAction(std::forward<Parameters>(parameters)...);
   }
 
@@ -180,6 +191,13 @@ class AverageHelper : public RActionImpl<AverageHelper<Action>> {
         std::begin(is_configured_),
         std::find_if(std::begin(is_configured_), std::end(is_configured_),
                      [](bool x) { return x; }));
+    if (first_configured == static_cast<long>(is_configured_.size())) {
+      std::cerr << GetActionName()
+                << ": no event was suitable to initialize the action. The "
+                   "result is empty."
+                << std::endl;
+      return;
+    }
     if (!is_configured_[0])
       results_[0]->CopyInitializedState(*results_.at(first_configured));
     std::vector<std::shared_ptr<Result_t>> others;
@@ -191,9 +209,13 @@ class AverageHelper : public RActionImpl<AverageHelper<Action>> {
   }
 
   /**
-   * Initializes the helper and the action using the first event in the input
-   * tree.
-   * @param reader
+   * Initializes the helper and the action using the initialization object, the
+   * external TTreeReader or the first event in the input tree. If none of them
+   * is available (e.g. cached data input or ROOT >= 6.36, where the TTree is
+   * read through a data source and no TTreeReader is passed), the
+   * initialization is deferred to the first suitable event in Exec.
+   * @param reader TTreeReader of the input tree, may be a nullptr.
+   * @param slot slot in the MT pool.
    */
   void InitTask(TTreeReader *reader, unsigned int slot) {
     const std::lock_guard lock(mutex_);
@@ -207,14 +229,7 @@ class AverageHelper : public RActionImpl<AverageHelper<Action>> {
         TTreeReader local_reader(reader->GetTree());
         results_[slot]->Initialize(local_reader);
       } else {
-        throw std::runtime_error(
-            "The Action has not Initialized. In case of cached data input, "
-            "either the "
-            "SetExternalTTreeReader(TTreeReader*), "
-            "or the "
-            "SetInitializationWithInitializationObject(Action::"
-            "InitializationObject*) function of the "
-            "AverageHelper needs to be used");
+        return;  // initialized in Exec using the first suitable event
       }
       is_configured_[slot] = true;
     }

@@ -389,6 +389,26 @@ class CorrectionAction<AxesConfig, std::tuple<EventParameters...>> {
   }
 
   /**
+   * Initializes the correction step using the input Q-vector of the current
+   * event. Used by the AverageHelper, if no other way of initialization is
+   * available.
+   * @param input input Q-vector of the current event.
+   * @return true if the initialization succeeded, false if the event was not
+   * suitable for the initialization.
+   */
+  bool InitializeFromEvent(const Qn::DataContainerQVector &input,
+                           const EventParameters &...) {
+    try {
+      auto obj = input;
+      Initialize(obj);
+      return true;
+    } catch (std::out_of_range &) {
+      Reset();
+      return false;
+    }
+  }
+
+  /**
    * Try next event, if current event in the reader was invalid for initialization
    * @param reader reader containing the events for initialization
    * @param input_data input value for initialization

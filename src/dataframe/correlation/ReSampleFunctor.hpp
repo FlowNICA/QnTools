@@ -67,7 +67,7 @@ class ReSampleFunctor {
  */
 template <typename DataFrame>
 auto Resample(DataFrame df, std::size_t n) {
-  return df.template Define("samples", ReSampleFunctor(n), {});
+  return df.Define("samples", ReSampleFunctor(n), {});
 }
 
 }  // namespace Qn::Correlation

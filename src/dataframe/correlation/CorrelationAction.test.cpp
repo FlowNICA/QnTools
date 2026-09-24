@@ -90,3 +90,47 @@ TEST(CorrelationAction, BasicIntegratedQ) {
   auto func = Qn::Correlation::TwoParticle::d2(2);
   auto result = func(p,r,p);
 }
+
+/**
+ * Same as BasicIntegratedQ, but without any initialization input. The input is
+ * not read from a TTree, so the AverageHelper does not get a TTreeReader and
+ * has to initialize the action using the first event.
+ */
+TEST(CorrelationAction, InitializationFromFirstEvent) {
+  ROOT::RDataFrame df(100);
+  auto event_axes = Qn::MakeAxes(Qn::AxisD("event", 2, 0, 2));
+  auto q = Qn::DataContainerQVector();
+  q.At(0).ActivateHarmonic(1);
+  q.At(0).InitializeHarmonics();
+  auto df1 = df.DefineSlotEntry("event",
+                                [](unsigned int, ULong64_t entry) {
+                                  double a = 0;
+                                  if (entry > 90) a = 1.;
+                                  return a;
+                                },
+                                {})
+                 .Define("q",
+                         [q](double event) -> Qn::DataContainerQVector {
+                           auto ret = q;
+                           for (int i = 0; i < 100; ++i) {
+                             ret.At(0).Add(3. / 4 * TMath::Pi(), 1.);
+                             ret.At(0).Add(1. / 4 * TMath::Pi(), 1.);
+                           }
+                           ret.At(0).CheckQuality();
+                           ret.At(0) =
+                               ret.At(0).Normal(Qn::QVector::Normalization::M);
+                           return ret;
+                         },
+                         {"event"});
+  auto dfs = Qn::Correlation::Resample(df1, 10);
+
+  auto f_test = [](const Qn::QVector &a) { return a.x(1) + a.y(1); };
+  auto f_weight = [](const Qn::QVector &a) { return a.sumweights()*(a.sumweights()-1); };
+  auto correlation = Qn::Correlation::MakeCorrelationAction(
+      "test", f_test, f_weight, Qn::Correlation::UseWeights::Yes, {"q"}, event_axes, 0);
+  auto res = Qn::MakeAverageHelper(correlation).BookMe(dfs);
+  auto data_container = res->GetDataContainer();
+  EXPECT_NEAR(data_container.At(0).GetStatistics().Mean(), 0.70710678, 1e-5);
+  EXPECT_EQ(data_container.At(0).GetStatistics().N(), 91);
+  EXPECT_EQ(data_container.At(1).GetStatistics().N(), 9);
+}

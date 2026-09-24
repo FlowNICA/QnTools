@@ -191,6 +191,27 @@ class CorrelationAction<Function, WeightFunction,
     }
   }
 
+  /**
+   * Initializes the CorrelationAction using the input Q-vectors of the current
+   * event. Used by the AverageHelper, if no other way of initialization is
+   * available.
+   * @param input_q input Q-vectors of the current event.
+   * @return true if the initialization succeeded, false if the event was not
+   * suitable for the initialization.
+   */
+  bool InitializeFromEvent(const InputDataContainers &... input_q,
+                           const ROOT::RVec<ULong64_t> &,
+                           const EventParameters &...) {
+    try {
+      Initialize(InitializationObject{input_q...});
+      return true;
+    } catch (std::out_of_range &) {
+      correlation_ = Qn::DataContainerStatCollect{};
+      stride_ = 1;
+      return false;
+    }
+  }
+
   void TryNextEventInReader(TTreeReader &reader,
                             std::vector<TTreeReaderValue<DataContainerQVector>> input_data,
                             Long64_t i_event,
